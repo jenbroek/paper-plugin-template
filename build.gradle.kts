@@ -11,7 +11,7 @@ dependencies {
 	compileOnly(libs.paper.api)
 }
 
-fun String.toCase(sep: String) = replace("(?<=.)(?=\\p{Upper})".toRegex(), sep).lowercase()
+fun String.toCase(sep: String) = replace("(?<=\\p{Lower})(?=\\p{Upper})".toRegex(), sep).lowercase()
 
 val pluginGroup: String by project
 val pluginName: String by project
