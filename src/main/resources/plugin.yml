@@ -2,4 +2,4 @@ name: ${plugin.name}
 description: ${plugin.description}
 version: ${plugin.version}
 api-version: ${versions.api}
-main: ${plugin.pkg}.Main
+main: ${plugin.pkg}.{plugin.class}

@@ -11,7 +11,9 @@ dependencies {
 	compileOnly(libs.paper.api)
 }
 
-fun String.toCase(sep: String) = replace("(?<=\\p{Lower})(?=\\p{Upper})".toRegex(), sep).lowercase()
+val pat = "(?<=\\p{Lower})(?=\\p{Upper})".toRegex()
+fun String.toCase(sep: String) = replace(pat, sep).lowercase()
+fun String.toClassName() = split(pat).joinToString("", transform={ it.lowercase().capitalize() })
 
 val pluginGroup: String by project
 val pluginName: String by project
@@ -41,6 +43,7 @@ tasks {
 					"version" to pluginVersion,
 					"id" to pluginId,
 					"pkg" to "${pluginGroup}.${pluginName.toCase("_")}",
+					"class" to pluginName.toClassName(),
 				),
 				"versions" to mapOf(
 					"api" to libs.versions.paper.api.get().replace("\\.\\d+-.*".toRegex(), ""),
